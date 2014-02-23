@@ -30,3 +30,7 @@ var app = angular.module('menu-demo', ['ngRoute', 'ng-context-menu'])
 That's it, I hope you find this useful!
 
 «–– [Ian](http://www.iankwalter.com)
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ianwalter/ng-context-menu/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
