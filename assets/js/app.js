@@ -37,9 +37,12 @@ require(['angular', 'angular-route', 'ng-context-menu'], function(angular) {
 
   app.controller('HomeController', [
     '$scope',
-    '$timeout',
-    '$log',
-    function($scope, $timeout, $log) {
+    function($scope) {
+      $scope.message  = 'Right click triggered';
+
+      $scope.onRightClick = function(msg) {
+        console.log(msg);
+      }
 
     }
   ]);

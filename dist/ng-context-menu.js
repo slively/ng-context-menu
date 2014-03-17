@@ -5,7 +5,7 @@
  */
 angular
   .module('ng-context-menu', [])
-  .directive('contextMenu', ['$window', function($window) {
+  .directive('contextMenu', ['$window', '$parse', function($window, $parse) {
     return {
       restrict: 'A',
       link: function($scope, element, attrs) {
@@ -20,13 +20,15 @@ angular
             close = function close(element) {
               opened = false;
               element.removeClass('open');
-            };
+            },
+            fn = $parse(attrs.contextMenu);
 
         menuElement.css('position', 'absolute');
 
         element.bind('contextmenu', function(event) {
           $scope.$apply(function() {
             event.preventDefault();
+            fn($scope, { $event: event });
             open(event, menuElement);
           });
         });
