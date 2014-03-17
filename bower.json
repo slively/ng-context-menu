@@ -1,6 +1,6 @@
 {
   "name": "ng-context-menu",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "An AngularJS directive to display a context menu when a right-click event is triggered",
   "keywords": [
     "ng-context-menu",
@@ -10,7 +10,7 @@
     "angular"
   ],
   "authors": [
-    "Ian Kennington Walter <http://www.iankwalter.com>"
+    "Ian Kennington Walter (http://ianvonwalter.com)"
   ],
   "license": "MIT",
   "homepage": "http://ianwalter.github.io/ng-context-menu/",

@@ -29,4 +29,4 @@ var app = angular.module('menu-demo', ['ngRoute', 'ng-context-menu'])
 
 That's it, I hope you find this useful!
 
-«–– [Ian](http://www.iankwalter.com)
+«–– [Ian](http://ianvonwalter.com)

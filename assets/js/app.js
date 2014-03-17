@@ -1,7 +1,7 @@
 /**
  * Example application for ng-timer (https://github.com/ianwalter/ng-timer)
  *
- * @author Ian Kennington Walter (http://www.iankwalter.com)
+ * @author Ian Kennington Walter (http://ianvonwalter.com)
  */
 requirejs.config({
   baseUrl: '.',
@@ -15,7 +15,7 @@ requirejs.config({
       'assets/lib/angular-route/angular-route.min'
     ],
     'ng-context-menu': [
-      'dist/js/ng-context-menu'
+      'dist/ng-context-menu'
     ]
   },
   shim: {
