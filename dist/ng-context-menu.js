@@ -33,10 +33,9 @@ angular
           });
         });
 
-        angular.element($window).bind('click', function(event) {
+        angular.element($window).bind('click', function() {
           if (opened) {
             $scope.$apply(function() {
-              event.preventDefault();
               close(menuElement);
             });
           }
