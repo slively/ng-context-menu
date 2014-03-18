@@ -15,8 +15,8 @@ angular
             menuElement = angular.element(document.getElementById(attrs.target)),
             open = function open(event, element) {
               element.addClass('open');
-              element.css('top', event.layerY + 'px');
-              element.css('left', event.layerX + 'px');
+              element.css('top', event.pageY + 'px');
+              element.css('left', event.pageX + 'px');
               opened = true;
             },
             close = function close(element) {

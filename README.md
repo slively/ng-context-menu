@@ -26,6 +26,9 @@ var app = angular.module('menu-demo', ['ngRoute', 'ng-context-menu'])
 </div>
 ```
 
+**Note:** The position of the dropdown menu can get a little out of whack if you place the dropdown
+menu in a container with padding/margin/etc so it's best to place it as a direct child of the body element as is
+shown in this example.
 
 That's it, I hope you find this useful!
 
