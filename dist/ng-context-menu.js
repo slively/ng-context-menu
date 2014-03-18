@@ -13,17 +13,19 @@ angular
             openTarget,
             win = angular.element($window),
             menuElement = angular.element(document.getElementById(attrs.target)),
-            open = function open(event, element) {
-              element.addClass('open');
-              element.css('top', event.pageY + 'px');
-              element.css('left', event.pageX + 'px');
-              opened = true;
-            },
-            close = function close(element) {
-              opened = false;
-              element.removeClass('open');
-            },
             fn = $parse(attrs.contextMenu);
+
+        function open(event, element) {
+          element.addClass('open');
+          element.css('top', event.pageY + 'px');
+          element.css('left', event.pageX + 'px');
+          opened = true;
+        }
+
+        function close(element) {
+          opened = false;
+          element.removeClass('open');
+        }
 
         menuElement.css('position', 'absolute');
 
@@ -45,13 +47,18 @@ angular
           }
         });
 
-        win.bind('click', function(event) {
+        function handleWindowClickEvent(event) {
           if (opened && (event.button !== 2 || event.target !== openTarget)) {
             $scope.$apply(function() {
               close(menuElement);
             });
           }
-        });
+        }
+
+        // Firefox treats a right-click as a click and a contextmenu event while other browsers
+        // just treat it as a contextmenu event
+        win.bind('click', handleWindowClickEvent);
+        win.bind('contextmenu', handleWindowClickEvent);
       }
     };
   }]);
