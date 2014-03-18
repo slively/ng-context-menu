@@ -10,12 +10,14 @@ angular
       restrict: 'A',
       link: function($scope, element, attrs) {
         var opened = false,
+            openTarget,
+            win = angular.element($window),
             menuElement = angular.element(document.getElementById(attrs.target)),
             open = function open(event, element) {
-              opened = true;
+              element.addClass('open');
               element.css('top', event.layerY + 'px');
               element.css('left', event.layerX + 'px');
-              element.addClass('open');
+              opened = true;
             },
             close = function close(element) {
               opened = false;
@@ -26,15 +28,25 @@ angular
         menuElement.css('position', 'absolute');
 
         element.bind('contextmenu', function(event) {
+          openTarget = event.target;
+          event.preventDefault();
+          event.stopPropagation();
           $scope.$apply(function() {
-            event.preventDefault();
             fn($scope, { $event: event });
             open(event, menuElement);
           });
         });
 
-        angular.element($window).bind('click', function() {
-          if (opened) {
+        win.bind('keyup', function(event) {
+          if (opened && event.keyCode === 27) {
+            $scope.$apply(function() {
+              close(menuElement);
+            });
+          }
+        });
+
+        win.bind('click', function(event) {
+          if (opened && (event.button !== 2 || event.target !== openTarget)) {
             $scope.$apply(function() {
               close(menuElement);
             });
