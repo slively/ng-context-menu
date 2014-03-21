@@ -30,6 +30,12 @@ var app = angular.module('menu-demo', ['ngRoute', 'ng-context-menu'])
 menu in a container with padding/margin/etc so it's best to place it as a direct child of the body element as is
 shown in this example.
 
+#### Disabling the contextmenu
+
+If you need to disable the contextmenu in certain circumstances, you can add an expression to the
+ ```context-menu-disabled``` attribute. If the expression evaluates to true, the contextmenu will be
+ disabled, for example, ```context-menu-disabled="1 === 1"```
+
 That's it, I hope you find this useful!
 
 «–– [Ian](http://ianvonwalter.com)

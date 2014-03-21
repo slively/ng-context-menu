@@ -11,6 +11,7 @@ angular
       link: function($scope, element, attrs) {
         var opened = false,
             openTarget,
+            disabled = $scope.$eval(attrs.contextMenuDisabled),
             win = angular.element($window),
             menuElement = angular.element(document.getElementById(attrs.target)),
             fn = $parse(attrs.contextMenu);
@@ -30,17 +31,19 @@ angular
         menuElement.css('position', 'absolute');
 
         element.bind('contextmenu', function(event) {
-          openTarget = event.target;
-          event.preventDefault();
-          event.stopPropagation();
-          $scope.$apply(function() {
-            fn($scope, { $event: event });
-            open(event, menuElement);
-          });
+          if (!disabled) {
+            openTarget = event.target;
+            event.preventDefault();
+            event.stopPropagation();
+            $scope.$apply(function() {
+              fn($scope, { $event: event });
+              open(event, menuElement);
+            });
+          }
         });
 
         win.bind('keyup', function(event) {
-          if (opened && event.keyCode === 27) {
+          if (!disabled && opened && event.keyCode === 27) {
             $scope.$apply(function() {
               close(menuElement);
             });
@@ -48,7 +51,7 @@ angular
         });
 
         function handleWindowClickEvent(event) {
-          if (opened && (event.button !== 2 || event.target !== openTarget)) {
+          if (!disabled && opened && (event.button !== 2 || event.target !== openTarget)) {
             $scope.$apply(function() {
               close(menuElement);
             });
